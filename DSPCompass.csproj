@@ -339,7 +339,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include=".editorconfig" />
-    <EmbeddedResource Include="marker" />
     <None Include="manifest.json" />
     <None Include="README.md" />
   </ItemGroup>

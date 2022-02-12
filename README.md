@@ -3,8 +3,8 @@ Displays a triangle indicating the north. This don't affect achievements or mile
 北方角を表す三角形を表示します。実績やマイルストーンには影響しません。<br>
 <br>
 ## Features　特徴
-The red triangle indicates the north.<br>
-赤い三角形が北方向を示しています。<br>
+For you without sense of direction. The red triangle indicates the north.<br>
+方向感覚の無いあなたのために、赤い三角形が北方向を示しています。<br>
 <br>
 ## How to install　インストール方法
 1. Install BepInEx<br>

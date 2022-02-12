@@ -56,10 +56,10 @@ namespace DSPCompass
                     Arrow.gameObject.SetActive(true);
                     GameObject Player = GameMain.data.mainPlayer.gameObject;
                     Plane plane = new Plane(Player.transform.up, Player.transform.position);
-                    var point = new Vector3(0, 200, 0);
+                    var point = new Vector3(0, GameMain.data.localPlanet.realRadius, 0);
                     var planePoint = plane.ClosestPointOnPlane(point);
 
-                    Arrow.transform.localPosition = new Vector3(0, 0.3f, 0);
+                    Arrow.transform.localPosition = new Vector3(0, 0.8f, 0);
                     var direction = planePoint - Player.transform.position;
                     Arrow.transform.forward = direction;
                 }
@@ -77,40 +77,27 @@ namespace DSPCompass
             {
                 var mesh = new Mesh();
 
-                var trianglesVector3 = new List<Vector3> {
-                      new Vector3 (-1,0, 4),
-                      new Vector3 (0, 0, 5),
-                      new Vector3 (1, 0, 4),
-                   };
-                mesh.SetVertices(trianglesVector3);
-                var triangles = new List<int> { 0, 1, 2, 2, 1, 0 };
+                var Vertices = new List<Vector3> {
+                      new Vector3 (-0.5f,0, 4.3f),
+                      new Vector3 (0, 0, 5.3f),
+                      new Vector3 (0.5f, 0, 4.3f),
+                      new Vector3 (-0.4f, 0, 5.5f),
+                      new Vector3 (-0.4f, 0, 6.3f),
+                      new Vector3 (-0.2f, 0, 5.5f),
+                      new Vector3 (-0.2f, 0, 6.3f),
+                      new Vector3 (0.4f, 0, 5.5f),
+                      new Vector3 (0.4f, 0, 6.3f),
+                      new Vector3 (0.2f, 0, 5.5f),
+                      new Vector3 (0.2f, 0, 6.3f),
+                       new Vector3 (0, 0, 4.6f),
+                      new Vector3 (-0.2f, 0, 6),
+                      new Vector3 (0.2f, 0, 5.8f),
+                      new Vector3 (0.2f, 0, 6),
+                      new Vector3 (-0.2f, 0, 5.8f),
+               };
+                mesh.SetVertices(Vertices);
+                var triangles = new List<int> { 0, 1, 11, 11, 1, 0, 2, 1, 11, 11, 1, 2, 3, 4, 5, 5, 4, 3, 4, 6, 5, 5, 6, 4, 7, 9, 8, 8, 9, 7, 8, 9, 10, 10, 9, 8, 6, 9, 12, 6, 13, 9, 10, 15, 14, 14, 15, 5 };
                 mesh.SetTriangles(triangles, 0);
-
-                //var N1Vector3 = new List<Vector3> {
-                //      new Vector3 (-0.4f, 0, 5.5f),
-                //      new Vector3 (-0.4f, 0, 6.3f),
-                //      new Vector3 (-0.2f, 0, 5.5f),
-                //      new Vector3 (-0.2f, 0, 6.3f),
-                //   };
-                //mesh.SetVertices(N1Vector3);
-                //var N1 = new List<int> { 0, 1, 2, 2, 1, 0 };
-                //mesh.SetTriangles(N1, 1);
-                //var N2 = new List<int> { 1, 2, 3, 3, 2, 1 };
-                //mesh.SetTriangles(N2, 2);
-
-                //var N3Vector3 = new List<Vector3> {
-                //      new Vector3 (0.4f, 0, 5.5f),
-                //      new Vector3 (0.4f, 0, 6.3f),
-                //      new Vector3 (0.2f, 0, 5.5f),
-                //      new Vector3 (0.2f, 0, 6.3f),
-                //   };
-                //mesh.SetVertices(N3Vector3);
-                //var N3 = new List<int> { 0, 1, 2, 2, 1, 0 };
-                //mesh.SetTriangles(N3, 3);
-                //var N4 = new List<int> { 1, 2, 3, 3, 2, 1 };
-                //mesh.SetTriangles(N4, 4);
-
-
 
                 var meshFilter = GetComponent<MeshFilter>();
                 meshFilter.mesh = mesh;
@@ -141,7 +128,6 @@ namespace DSPCompass
             Arrow.transform.localScale = new Vector3(1, 1, 1);
 
             arrowEnable = true;
-            //LogManager.Logger.LogInfo("-----------------------------------------------------arrowEnable");
 
         }
 
