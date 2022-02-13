@@ -1,6 +1,6 @@
 {
   "name": "DSPCompass",
-  "version_number": "0.0.1",
+  "version_number": "0.0.3",
   "website_url": "https://github.com/appuns/DSPCompass",
   "description": "Displays a triangle indicating the north. This don't affect achievements or milestones. 北方角を表す三角形を表示します。実績やマイルストーンには影響しません。",
   "dependencies": [
