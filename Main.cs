@@ -28,7 +28,7 @@ using xiaoye97;
 namespace DSPCompass
 {
 
-    [BepInPlugin("Appun.DSP.plugin.Compass", "DSPCompass", "0.0.3")]
+    [BepInPlugin("Appun.DSP.plugin.Compass", "DSPCompass", "0.0.5")]
     [BepInProcess("DSPGAME.exe")]
 
     [HarmonyPatch]
@@ -39,28 +39,25 @@ namespace DSPCompass
         public static GameObject ArrowBlue;
         public static GameObject ArrowBase;
 
-        public static bool arrowEnable = false;
+        //public static bool arrowEnable = false;
 
         public void Start()
         {
             LogManager.Logger = Logger;
             Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly());
-
         }
 
 
         public void Update()
         {
-
             //LogManager.Logger.LogInfo($"{GameMain.isNull}:{GameMain.isPaused}:{GameMain.isLoading}:{GameMain.isRunning}:{GameMain.isRunning}:{DSPGame.Game.isMenuDemo}");
             if (DSPGame.Game == null)
             {
                 return;
             }
-            if (!DSPGame.Game.isMenuDemo && GameMain.isRunning)
+            if (!DSPGame.Game.isMenuDemo && GameMain.isRunning )
             {
-
-                if (arrowEnable)
+                if (ArrowBase)
                 {
                     if (GameMain.localPlanet != null && !GameMain.data.mainPlayer.sailing)
                     {
@@ -69,6 +66,7 @@ namespace DSPCompass
                         {
                             Plane plane = new Plane(Player.transform.up, Player.transform.position);
                             var point = new Vector3(0, GameMain.data.localPlanet.realRadius, 0);
+
                             var planePoint = plane.ClosestPointOnPlane(point);
 
                             ArrowBase.transform.localPosition = new Vector3(0, 0.8f, 0);
@@ -84,8 +82,7 @@ namespace DSPCompass
                 }else
 
                 {
-                    LogManager.Logger.LogInfo("---------------------------------------------------------Arrow created");
-
+                    //LogManager.Logger.LogInfo("---------------------------------------------------------Arrow created");
                     GameObject Player = GameMain.data.mainPlayer.gameObject;
 
                     ArrowBase = new GameObject("ArrowBase");
@@ -109,15 +106,12 @@ namespace DSPCompass
                     ArrowBlue.SetActive(true);
                     ArrowBlue.transform.localPosition = new Vector3(0, 0, 0);
                     ArrowBlue.transform.localRotation = new Quaternion(0, 0, 180, 0);
-
-                    arrowEnable = true;
                 }
             }
         }
 
         public class CreateTriangleMeshRed : MonoBehaviour
         {
-
             void Start()
             {
                 var mesh = new Mesh();
@@ -152,12 +146,10 @@ namespace DSPCompass
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 renderer.receiveShadows = false;
             }
-
         }
 
         public class CreateTriangleMeshBlue : MonoBehaviour
         {
-
             void Start()
             {
                 var mesh = new Mesh();
@@ -196,19 +188,6 @@ namespace DSPCompass
         }
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public class LogManager
     {
